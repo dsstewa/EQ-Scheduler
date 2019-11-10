@@ -1,7 +1,8 @@
 const BASE_URL = "http://localhost:3000"
 const EQUIPMENT_URL = `${BASE_URL}/equipment`
 const NEWEQ_URL = `${BASE_URL}/equipment/new`
-const SCHEDULE_URL = `${BASE_URL}/schedule`
+const PROJECTS_URL = `${BASE_URL}/projects`
+const PROJECT_URL = `${BASE_URL}/project`
 
 // document.addEventListener("DOMContentLoaded", () => {
 //     fetchSchedules()

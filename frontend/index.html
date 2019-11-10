@@ -13,29 +13,28 @@
 </head>
 <body>
     <div class="ui secondary pointing menu">
-        <a class="active item">
-                Home
-         </a>
-            <a class="item">
-                Add Equipment
-            </a>
-            <a class="item">Delete Equipment</a>
-            <div class="right menu">
-                    <a class="ui item">Created by David S</a>
-                  </div>
-            </div>
+        <a class="active item"> Home</a>
+            <a class="item" id="addEq"> Add Equipment</a>
+            <a class="item" id="addPj"> Add Project</a>
+            <a class="item" id="delEq">Delete Equipment</a>
+            <a class="item" id="delPj">Delete Project</a>
+        <div class="right menu">
+            <a class="ui item">Created by David S</a>
+        </div>
+        </div>
+        <addDeleteEdit>
+        </addDeleteEdit>
+        
+        <projects>
+        </projects>
 
-            <div class="ui  segment">
-                <h3 class="ui block hearder">Current Schedule</h3>
-            <p>Items in the menu</p>
-            </div>
-            <div class="ui  segment">
-                    <h3 class="ui block hearder">Current Schedule</h3>
-                <p>Items in the menu</p>
-                </div>
+
+
+
    <script src="semantic/dist/semantic.min.js"></script>
    <script src="./src/index.js"></script>
    <script src="./src/newEquipment.js"></script>
    <script src="./src/schedules.js"></script>
+   <script src="./src/projects.js"></script>
 </body>
 </html>

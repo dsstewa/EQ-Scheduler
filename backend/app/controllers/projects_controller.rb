@@ -1,7 +1,11 @@
+require 'pry'
 class ProjectsController < ApplicationController
     def index
         project = Project.all
-        render json: ProjectSerializer.new(project)
+        options = {
+            include: [:equipment,:'equipment.make']
+        }
+        render json: ProjectSerializer.new(project,options)
     end
 
 
@@ -10,7 +14,7 @@ class ProjectsController < ApplicationController
         options = {
             include: [:equipment]
         }
-        render json: ProjectSerializer.new(Project)
+        render json: ProjectSerializer.new(Project,options)
     end
 
 end
