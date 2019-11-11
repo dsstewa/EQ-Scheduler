@@ -24,7 +24,8 @@ let createForum = (array) => {
     submit.setAttribute('type','submit')
     submit.innerHTML = "Submit"
     
-    form.appendChild(submit) 
+    form.appendChild(submit)
+    
     return form
 }
 

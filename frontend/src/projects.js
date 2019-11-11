@@ -5,9 +5,8 @@ const addDeleteEdit = document.getElementsByClassName('addDeleteEdit')[0];
 document.addEventListener("DOMContentLoaded", () => {
     Project.fetchProjects();
     document.getElementById("addPj").addEventListener("click", Project.addProject);
-    document.getElementById("delPj").addEventListener("click", deleteProject);
+    //document.getElementById("delPj").addEventListener("click", deleteProject);
  }, false);
-
 
 
 class Project {
@@ -18,7 +17,6 @@ class Project {
         this.duration = duration;
         this.equipment = equipment;
     }
-  
     static fetchProjects = () => {
         return fetch(PROJECTS_URL)
         .then(resp => resp.json())
@@ -28,7 +26,6 @@ class Project {
                 const project = new Project(pdata.attributes.name, pdata.id, pdata.attributes.location, pdata.attributes.duration, pdata.relationships.equipment.data)
                 project.createProject()
             }
-
             for (const eqdata of json.included) {
                 const equipment = new Equipment(eqdata.id, eqdata.attributes.make,eqdata.attributes.model,eqdata.attributes.rent,eqdata.attributes.project_id)
                 equipment.createEquipment()
@@ -51,8 +48,30 @@ class Project {
                 input: "project-duration",
                 placeholder: "Project Duration"
             }]
+      
       let newForm = createForum(fields)  
+     
       addDeleteEdit.append(newForm)
+      addDeleteEdit.addEventListener('submit',Project.newProject)
+  }
+
+  static newProject = (data) => {
+    let formData = {
+        name: data.target[0].value,
+        location: data.target[1].value,
+        duration: data.target[2].value
+    }
+    
+    let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+             "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+        };
+    debugger
+        fetch(PROJECTS_URL,configObj)
   }
     
    createProject() {   
@@ -69,7 +88,6 @@ class Project {
             p.setAttribute('id',`eqID${eqID.id}`)
             div.appendChild(p)
         }
-        
         mainProjects.append(div)
     }
 

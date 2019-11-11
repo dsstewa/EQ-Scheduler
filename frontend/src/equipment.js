@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("addEq").addEventListener("click", Equipment.addEquipment);
-    document.getElementById("delEq").addEventListener("click", deleteEquipment);
+    //document.getElementById("delEq").addEventListener("click", deleteEquipment);
  }, false);
 
 

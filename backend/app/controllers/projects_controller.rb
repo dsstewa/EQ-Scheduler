@@ -17,4 +17,14 @@ class ProjectsController < ApplicationController
         render json: ProjectSerializer.new(Project,options)
     end
 
+    def new
+        @project = Project.new
+    end
+
+    def create
+        binding.pry
+    end
+
+
+
 end
