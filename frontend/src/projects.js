@@ -55,8 +55,6 @@ class Project {
       addDeleteEdit.append(newForm)
   }
     
-
-
    createProject() {   
         let div = document.createElement("div")
             div.setAttribute('class','ul segment')
