@@ -14,4 +14,19 @@ class EquipmentController < ApplicationController
         render json: EquipmentSerializer.new(equipment)
     end
 
+    def create
+        @equipment = Equipment.new(equipment_params)
+        @equipment.save
+        options = {
+            include: [:equipment]
+        }
+        render json: EquipmentSerializer.new(@equipment)
+        
+    end
+
+
+    def equipment_params
+        params.require(:equipment).permit(:make, :model, :rent, :project_id)
+     end
+
 end

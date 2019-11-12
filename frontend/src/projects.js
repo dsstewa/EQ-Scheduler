@@ -85,12 +85,11 @@ class Project {
    createProject() {   
         let div = document.createElement("div")
             div.setAttribute('class','ul segment')
-            div.setAttribute('pid',`${this.id}`)
+            div.setAttribute('id',`p${this.id}`)
         let h3 = document.createElement("h3")
             h3.setAttribute('class','ui block header')
             h3.innerHTML = `${this.name} - Project Number ${this.id}`
             div.appendChild(h3)
-            
         for (const eqID of this.equipment) {
             let p = document.createElement("p")
             p.setAttribute('id',`eqID${eqID.id}`)
