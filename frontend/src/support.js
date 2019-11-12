@@ -29,3 +29,8 @@ let createForum = (array) => {
     return form
 }
 
+
+let clearForm = (formTag) => {
+    formTag.innerHTML = ""
+}
+

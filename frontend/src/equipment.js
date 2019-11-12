@@ -23,6 +23,7 @@ class Equipment {
 
 
     static addEquipment = () => {
+        clearForm(addDeleteEdit)
         let fields = [{
                 label: "Equipment Make", 
                 input: "equipment-make",

@@ -34,6 +34,7 @@ class Project {
     }
     
    static addProject = () => {
+        clearForm(addDeleteEdit)
         let fields = [{
                 label: "Project Name", 
                 input: "project-name",
@@ -56,6 +57,7 @@ class Project {
   }
 
   static newProject = (data) => {
+     data.preventDefault()
     let formData = {
         name: data.target[0].value,
         location: data.target[1].value,
@@ -70,8 +72,14 @@ class Project {
         },
         body: JSON.stringify(formData)
         };
-    debugger
+    
         fetch(PROJECTS_URL,configObj)
+        .then(resp => resp.json())
+        .then(json => {
+            const project = new Project(json.data.attributes.name, json.data.id, json.data.attributes.location, json.data.attributes.duration, json.data.relationships.equipment.data)
+            project.createProject()
+            clearForm(addDeleteEdit)
+        })
   }
     
    createProject() {   
@@ -80,7 +88,7 @@ class Project {
             div.setAttribute('pid',`${this.id}`)
         let h3 = document.createElement("h3")
             h3.setAttribute('class','ui block header')
-            h3.innerHTML = `${this.name}`
+            h3.innerHTML = `${this.name} - Project Number ${this.id}`
             div.appendChild(h3)
             
         for (const eqID of this.equipment) {

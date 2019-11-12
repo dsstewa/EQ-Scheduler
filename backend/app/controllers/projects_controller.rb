@@ -22,9 +22,19 @@ class ProjectsController < ApplicationController
     end
 
     def create
-        binding.pry
+        @project = Project.new(project_params)
+        @project.save
+        options = {
+            include: [:equipment]
+        }
+        render json: ProjectSerializer.new(@project,options)
+        
     end
 
+
+    def project_params
+        params.require(:project).permit(:name, :location, :duration)
+     end
 
 
 end
