@@ -80,6 +80,7 @@ class Equipment {
        .then(json => {
            const equipment = new Equipment(json.data.id,json.data.attributes.make,json.data.attributes.model, json.data.attributes.rent, json.data.attributes.project_id)
            equipment.insertEquipment()
+           addDeleteEdit.removeEventListener('submit',Equipment.newEquipment)
            clearForm(addDeleteEdit)
        })
     }

@@ -5,7 +5,7 @@ const addDeleteEdit = document.getElementsByClassName('addDeleteEdit')[0];
 document.addEventListener("DOMContentLoaded", () => {
     Project.fetchProjects();
     document.getElementById("addPj").addEventListener("click", Project.addProject);
-    //document.getElementById("delPj").addEventListener("click", deleteProject);
+    document.getElementById("home").addEventListener("click", clearForm(addDeleteEdit) )
  }, false);
 
 
@@ -78,6 +78,7 @@ class Project {
         .then(json => {
             const project = new Project(json.data.attributes.name, json.data.id, json.data.attributes.location, json.data.attributes.duration, json.data.relationships.equipment.data)
             project.createProject()
+            addDeleteEdit.removeEventListener('submit',Project.newProject)
             clearForm(addDeleteEdit)
         })
   }
