@@ -24,9 +24,16 @@ class EquipmentController < ApplicationController
         
     end
 
+    def destroy
+       @equipment = Equipment.find_by_id(equipment_params[:id])
+       @equipment.destroy
+       render json: EquipmentSerializer.new(@equipment)
+
+    end
+
 
     def equipment_params
-        params.require(:equipment).permit(:make, :model, :rent, :project_id)
+        params.require(:equipment).permit(:make, :model, :rent, :project_id, :id)
      end
 
 end

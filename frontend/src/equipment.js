@@ -17,8 +17,15 @@ class Equipment {
     }
 
     createEquipment() {
+        
         const p = document.getElementById(`eqID${this.id}`)
             p.innerHTML = `${this.make} - ${this.model}`
+            
+            let butt = document.createElement('button')
+            butt.setAttribute('class','ui button')
+            butt.innerText = 'Delete'
+            butt.addEventListener('click',Equipment.deleteEq)
+            p.appendChild(butt)
             }
 
 
@@ -27,6 +34,11 @@ class Equipment {
         let p = document.createElement("p")
             p.setAttribute('id',`eqID${this.id}`)
             p.innerHTML = `${this.make} - ${this.model}`
+            let butt = document.createElement('button')
+            butt.setAttribute('class','ui button')
+            butt.innerText = 'Delete'
+            butt.addEventListener('click',Equipment.deleteEq)
+            p.appendChild(butt)
             div.appendChild(p)
     }
 
@@ -57,7 +69,40 @@ class Equipment {
         addDeleteEdit.addEventListener('submit',Equipment.newEquipment)
     }
 
-  static newEquipment = (data) => {
+  static deleteEq  = (event) => {
+       let eqId =  event.target.parentElement.id.split("eqID")[1]
+       let formData = {
+           id: eqId
+       }
+       
+       let configObj = {
+         method: "DELETE",
+            headers: {
+            "Content-Type": "application/json",
+             "Accept": "application/json"
+             },
+             body: JSON.stringify(formData)
+            };
+            
+        fetch(`${EQUIPMENT_URL}/${eqId}`,configObj)
+            .then(resp => resp.json())
+            .then(json => {
+              let  p = document.getElementById(`eqID${eqId}`)
+               p.parentNode.removeChild(p)
+            addDeleteEdit.removeEventListener('submit',Equipment.newEquipment)
+            clearForm(addDeleteEdit)
+        })
+
+
+
+
+
+  }
+  
+  
+  
+  
+    static newEquipment = (data) => {
         data.preventDefault()
         let formData = {
         make: data.target[0].value,
@@ -65,7 +110,7 @@ class Equipment {
         rent: data.target[2].value,
         project_id: data.target[3].value,
          }
-   
+
    let configObj = {
        method: "POST",
        headers: {
